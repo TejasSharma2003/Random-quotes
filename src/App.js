@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import {useState,useEffect,useContext} from "react";
 import './App.css';
-
+import Quotes from "./components/Quotes"
+import Axios from 'axios';
 function App() {
+  let randomColor = require('randomcolor'); // import the script
+  const [track,setTrack]=useState(false)
+  const [bg,setBg]=useState('');
+  let color;
+  useEffect(()=>{
+    color=randomColor();
+    setBg(color);
+    
+  },[track])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{backgroundColor:bg}}className="App">
+        <Quotes setTrack={setTrack} track={track} bg={bg}/>
     </div>
   );
 }
